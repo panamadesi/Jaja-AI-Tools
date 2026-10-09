@@ -14,7 +14,7 @@ Kumpulan tool gratis untuk AI content creator. Semua berjalan di browser, tanpa 
 | Prompt Enhancer | Ide singkat menjadi prompt lengkap (mode bawaan atau Ollama lokal) |
 | Jaja Bundle | Alur 3 langkah dan daftar web AI pembuat konten |
 
-Pilihan di Character Generator dan Motion Control tersimpan otomatis di browser.
+Setiap modul punya panel "Cara Pakai" yang bisa dilipat. Pilihan di Character Generator dan Motion Control tersimpan otomatis di browser.
 
 ## Jalankan lokal
 

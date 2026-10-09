@@ -112,7 +112,39 @@ window.JAJA = (function () {
         return (await res.json()).response.trim();
     }
 
-    document.addEventListener("DOMContentLoaded", nav);
+    // ---------- panduan cara pakai ----------
+
+    function guide() {
+
+        if (typeof GUIDES === "undefined") return;
+
+        const g = GUIDES[location.pathname.split("/").pop()];
+        const navEl = document.getElementById("nav");
+
+        if (!g || !navEl) return;
+
+        const d = document.createElement("details");
+        d.className = "guide";
+
+        let closed = false;
+        try { closed = localStorage.getItem("jaja_guide_closed") === "1"; } catch (e) { }
+        d.open = !closed;
+
+        d.innerHTML =
+            "<summary>📖 Cara Pakai: " + g.title + "</summary>" +
+            '<p class="goal">' + g.goal + "</p>" +
+            "<ol>" + g.steps.map(x => "<li>" + x + "</li>").join("") + "</ol>" +
+            (g.next ? '<p class="next"><b>Langkah berikutnya:</b> ' + g.next + "</p>" : "") +
+            (g.tips ? "<h4>Tips</h4><ul>" + g.tips.map(x => "<li>" + x + "</li>").join("") + "</ul>" : "");
+
+        d.addEventListener("toggle", () => {
+            try { localStorage.setItem("jaja_guide_closed", d.open ? "0" : "1"); } catch (e) { }
+        });
+
+        navEl.insertAdjacentElement("afterend", d);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => { nav(); guide(); });
 
     return { nav, toast, copy, download, pick, shuffle, fill, store, take, peek, ollama };
 
