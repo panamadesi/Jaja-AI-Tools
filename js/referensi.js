@@ -226,7 +226,7 @@
             img.addEventListener("click", () => {
                 const p = $("player");
                 p.currentTime = f.t;
-                p.scrollIntoView({ block: "center", behavior: "smooth" });
+                p.scrollIntoView({ block: "center" });
             });
 
             const head = document.createElement("div");
@@ -318,10 +318,23 @@
     function build() {
 
         const used = frames.filter(f => f.note.trim());
+        const msg = $("buildMsg");
+
+        // pesan menetap (bukan toast sesaat) dan isi kotak hasil tidak dihapus
+        if (!meta || !url) {
+            msg.textContent = "⚠️ Unggah video dulu (langkah 1), lalu ambil frame (langkah 2).";
+            return;
+        }
+
+        if (!frames.length) {
+            msg.textContent = "⚠️ Belum ada frame. Klik \"Ambil Frame Otomatis\" di langkah 2, lalu pilih gerakan di tiap frame pada kartu Frame Kunci.";
+            return;
+        }
 
         if (!used.length) {
-            $("hasil").value = "";
-            return JAJA.toast("Isi gerakan pada minimal satu frame");
+            msg.textContent = "⚠️ Ada " + frames.length + " frame, tetapi belum ada gerakan yang dipilih. Pilih gerakan minimal di satu frame pada kartu Frame Kunci.";
+            $("frames").scrollIntoView({ block: "start" });
+            return;
         }
 
         const subject = $("subject").value.trim() || "the character";
@@ -335,12 +348,15 @@
 
         const lines = segs.map(s => "[" + s.from.toFixed(1) + "-" + s.to.toFixed(1) + "s] " + s.note);
 
-        const para = subject + " performs a continuous movement sequence matching the reference video: " +
+        const para = "A continuous movement sequence matching the reference video, performed by " + subject + ": " +
             segs.map((s, i) => (i ? "then " : "first ") + s.note).join("; ") + ". " +
             "Natural timing and body weight, smooth transitions between actions, consistent face and outfit throughout" +
             (meta ? ", " + ratioLabel(meta.w, meta.h, true) + ", about " + Math.round(meta.duration) + " seconds" : "") + ".";
 
         $("hasil").value = para + ($("withTimeline").checked ? "\n\nTimeline:\n" + lines.join("\n") : "");
+
+        msg.textContent = "✅ Prompt tersusun dari " + used.length + " frame. Lihat kotak Prompt Gerakan.";
+        $("hasil").scrollIntoView({ block: "center" });
     }
 
     $("build").addEventListener("click", build);
