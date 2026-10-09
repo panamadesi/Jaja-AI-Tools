@@ -423,3 +423,39 @@ padding:1px 6px;
 border-radius:5px;
 font-size:13px;
 }
+
+
+/* riwayat */
+.hist{
+display:flex;
+flex-direction:column;
+gap:8px;
+margin:10px 0 12px;
+}
+
+.hitem{
+display:flex;
+align-items:center;
+gap:8px;
+background:#0f172a;
+border-radius:10px;
+padding:8px 10px;
+}
+
+.hitem > div{
+flex:1;
+min-width:0;
+}
+
+.hitem b{
+display:block;
+font-size:14px;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+}
+
+.hitem small{
+color:#94a3b8;
+font-size:12px;
+}

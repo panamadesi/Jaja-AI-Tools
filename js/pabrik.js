@@ -11,6 +11,43 @@
     let mode = MODES[0];
     let current = null;
 
+    // ---------- riwayat ----------
+
+    const FIELDS = ["ide", "genre", "visual", "jml", "dur", "rasio", "lokasi", "tempo", "judul", "karakter"];
+
+    const hist = JAJA.history({ key: "pabrik", onOpen: restore });
+
+    function histSave() {
+
+        const f = {};
+        FIELDS.forEach(id => { f[id] = $(id).value; });
+
+        hist.save({
+            label: (mode === MODES[1] ? "🎵 " : "🎬 ") + (f.ide.length > 38 ? f.ide.slice(0, 38) + "…" : f.ide) + " · " + f.jml + " scene",
+            data: { mode, f, sheet: $("sheet").value, master: $("master").value, current }
+        });
+    }
+
+    function restore(e) {
+
+        const d = e.data;
+
+        setMode(d.mode);          // mengisi ulang pilihan genre/mood dan mengosongkan hasil
+
+        FIELDS.forEach(id => { $(id).value = d.f[id]; });
+
+        $("sheet").value = d.sheet;
+        $("master").value = d.master;
+
+        current = d.current;
+        render();
+
+        $("steps").querySelectorAll("span").forEach((s, i) => s.classList.toggle("on", i === 2));
+
+        JAJA.toast("Riwayat dibuka");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
     const GENRES = {
         "Drama keluarga": "emotional family drama, warm tones, intimate framing",
         "Romansa": "romantic mood, soft glow, shallow depth of field, pastel warm palette",
@@ -225,6 +262,7 @@
         $("steps").querySelectorAll("span").forEach((s, i) => s.classList.toggle("on", i === 2));
 
         render();
+        histSave();
     }
 
     function render() {

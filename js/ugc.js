@@ -134,6 +134,42 @@
 
     let current = null;
 
+    // ---------- riwayat ----------
+
+    const FIELDS = ["produk", "manfaat", "target", "promo", "platform", "durasi", "gaya", "nada", "aktor", "lokasi"];
+    let histId = null;
+
+    const hist = JAJA.history({ key: "ugc", onOpen: restore });
+
+    function histSave(overwrite) {
+
+        const f = {};
+        FIELDS.forEach(id => { f[id] = $(id).value; });
+
+        histId = hist.save({
+            label: (f.produk || "Tanpa nama") + " · " + f.gaya + " · " + f.durasi,
+            data: { f, hooks: $("hooks").value, script: $("script").value, cta: $("cta").value, current }
+        }, overwrite ? histId : null);
+    }
+
+    function restore(e) {
+
+        const d = e.data;
+
+        FIELDS.forEach(id => { $(id).value = d.f[id]; });
+
+        $("hooks").value = d.hooks;
+        $("script").value = d.script;
+        $("cta").value = d.cta;
+
+        current = d.current;
+        histId = e.id;
+        renderBoard();
+
+        JAJA.toast("Riwayat dibuka");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
     function generate() {
 
         const produk = $("produk").value.trim();
@@ -198,6 +234,7 @@
         $("cta").value = ctas.map((c, i) => "CTA " + (i + 1) + ": " + c).join("\n") + "\n\nHashtag: " + tags.join(" ");
 
         renderBoard();
+        histSave(false);
     }
 
     function renderBoard() {
@@ -286,6 +323,7 @@
                 $("script").value
             );
             $("script").value = out;
+            histSave(true);
             $("aiStatus").textContent = "Selesai dipoles dengan Ollama.";
         } catch (e) {
             $("aiStatus").textContent = "Ollama tidak bisa dihubungi (" + e.message + "), memakai naskah bawaan.";

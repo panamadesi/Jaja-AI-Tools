@@ -106,6 +106,7 @@ const GUIDES = {
         tips: [
             "Mode Music Clip: isi judul lagu dan tempo. Untuk memakai wajah sendiri, unggah foto di slot wajah lalu lampirkan foto yang sama di generator gambar.",
             "<b>Export TXT</b> menyimpan seluruh storyboard dalam satu file.",
+            "Setiap hasil masuk ke kartu <b>Riwayat</b> di bawah (15 terakhir, hanya di browser ini). Klik <b>Buka</b> untuk memuat ulang semuanya, termasuk mode Drama atau Music Clip.",
             "Mode Drama bisa dikembangkan oleh AI lokal (Ollama) dengan mencentang opsi di langkah 2."
         ]
     },
@@ -124,7 +125,8 @@ const GUIDES = {
         tips: [
             "Hanya tulis manfaat yang benar. Hindari klaim berlebihan, terutama untuk produk kesehatan dan kecantikan.",
             "Centang opsi AI lokal untuk memoles naskah jadi bahasa yang lebih natural (butuh Ollama).",
-            "Pemeran \"Tanpa wajah\" cocok jika Anda tidak ingin menampilkan wajah."
+            "Pemeran \"Tanpa wajah\" cocok jika Anda tidak ingin menampilkan wajah.",
+            "Setiap Generate tersimpan di kartu <b>Riwayat</b> di bawah (15 terakhir, hanya di browser ini). Klik <b>Buka</b> untuk memuat ulang hasil lama."
         ]
     },
 

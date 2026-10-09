@@ -112,6 +112,124 @@ window.JAJA = (function () {
         return (await res.json()).response.trim();
     }
 
+    // ---------- riwayat hasil (disimpan di browser) ----------
+    // opts: { key, max, onOpen(entry) }. entry = { id, t, label, data }
+
+    function history(opts) {
+
+        const KEY = "jaja_hist_" + opts.key;
+        const max = opts.max || 15;
+
+        const read = () => {
+            try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+        };
+
+        const write = list => {
+            try { localStorage.setItem(KEY, JSON.stringify(list)); return true; } catch (e) { return false; }
+        };
+
+        const card = document.createElement("div");
+        card.className = "card";
+
+        const h = document.createElement("h2");
+        h.textContent = "🕘 Riwayat";
+
+        const hint = document.createElement("p");
+        hint.className = "hint";
+        hint.textContent = "Hasil tersimpan otomatis di browser ini saja (tidak dikirim ke mana pun). Maksimal " + max + " terakhir.";
+
+        const box = document.createElement("div");
+        box.className = "hist";
+
+        const clear = document.createElement("button");
+        clear.className = "ghost sm";
+        clear.textContent = "🗑 Hapus semua";
+        clear.addEventListener("click", () => {
+            if (read().length && confirm("Hapus semua riwayat?")) {
+                write([]);
+                render();
+            }
+        });
+
+        card.append(h, hint, box, clear);
+
+        const mount = document.querySelector(".right-panel");
+        (mount || document.body).appendChild(card);
+
+        function render() {
+
+            const list = read();
+            box.innerHTML = "";
+
+            if (!list.length) {
+                const empty = document.createElement("p");
+                empty.className = "hint";
+                empty.textContent = "Belum ada riwayat.";
+                box.appendChild(empty);
+                return;
+            }
+
+            list.forEach(e => {
+
+                const row = document.createElement("div");
+                row.className = "hitem";
+
+                const info = document.createElement("div");
+                const b = document.createElement("b");
+                b.textContent = e.label;
+                const s = document.createElement("small");
+                s.textContent = new Date(e.t).toLocaleString("id-ID", { dateStyle: "short", timeStyle: "short" });
+                info.append(b, s);
+
+                const open = document.createElement("button");
+                open.className = "sm";
+                open.textContent = "Buka";
+                open.addEventListener("click", () => opts.onOpen(e));
+
+                const del = document.createElement("button");
+                del.className = "sm ghost";
+                del.textContent = "✕";
+                del.setAttribute("aria-label", "Hapus");
+                del.addEventListener("click", () => {
+                    write(read().filter(x => x.id !== e.id));
+                    render();
+                });
+
+                row.append(info, open, del);
+                box.appendChild(row);
+            });
+        }
+
+        // simpan entri baru, atau timpa entri dengan id yang sama
+        function save(entry, id) {
+
+            let list = read();
+
+            if (id && list.some(x => x.id === id)) {
+                entry.id = id;
+                list = list.map(x => x.id === id ? Object.assign({}, entry, { t: x.t }) : x);
+            } else {
+                entry.id = Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
+                entry.t = Date.now();
+                list.unshift(entry);
+            }
+
+            list = list.slice(0, max);
+
+            if (!write(list)) {
+                list = list.slice(0, Math.max(1, Math.floor(list.length / 2)));
+                if (!write(list)) toast("Riwayat tidak bisa disimpan (penyimpanan penuh)");
+            }
+
+            render();
+            return entry.id;
+        }
+
+        render();
+
+        return { save, render };
+    }
+
     // ---------- panduan cara pakai ----------
 
     function guide() {
@@ -146,6 +264,6 @@ window.JAJA = (function () {
 
     document.addEventListener("DOMContentLoaded", () => { nav(); guide(); });
 
-    return { nav, toast, copy, download, pick, shuffle, fill, store, take, peek, ollama };
+    return { nav, toast, copy, download, pick, shuffle, fill, store, take, peek, ollama, history };
 
 })();
