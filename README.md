@@ -13,6 +13,7 @@ Kumpulan tool gratis untuk AI content creator. Semua berjalan di browser, tanpa 
 | UGC Konten | Hook, naskah bertimestamp, CTA, hashtag, dan storyboard jualan |
 | Prompt Enhancer | Ide singkat menjadi prompt lengkap: kamus ±500 kata, deteksi jenis konten, atau Ollama lokal |
 | Jaja Bundle | Alur 3 langkah dan daftar web AI pembuat konten |
+| Versi 2 | Paket Jaja v2 (Pabrik Konten, Video Generator, Prompt Siap Pakai) di folder `v2/` |
 
 Setiap modul punya panel "Cara Pakai" yang bisa dilipat. Pilihan di Character Generator dan Motion Control tersimpan otomatis di browser. UGC Konten dan Pabrik Konten menyimpan 15 hasil terakhir di kartu Riwayat (hanya di browser).
 
