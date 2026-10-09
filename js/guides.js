@@ -141,7 +141,9 @@ const GUIDES = {
         ],
         next: "Prompt video hasil enhancer bisa dilengkapi di Motion Control.",
         tips: [
-            "Mode bawaan menerjemahkan kata kunci umum dan menambah detail kualitas. Cepat dan tanpa internet.",
+            "Mode bawaan memakai kamus sekitar 500 kata Indonesia (orang, pakaian, tempat, cuaca, makanan, hewan, nama tempat) dan merapikan urutan, misalnya \"kucing hitam\" menjadi \"black cat\". Cepat dan tanpa internet.",
+            "Tool mengenali jenis konten (orang, makanan, pemandangan, bangunan, hewan, produk, fantasi) dan menambah detail serta negative prompt yang sesuai. Jenis yang terdeteksi tampil di bawah pilihan AI.",
+            "Jika muncul \"Belum diterjemahkan\", kata itu dibiarkan apa adanya. Ganti dengan sinonim yang umum, atau pakai AI lokal.",
             "Centang <b>Pakai AI lokal</b> untuk hasil yang lebih kaya. Butuh Ollama (<code>ollama serve</code>) dan model <code>qwen2.5:7b</code>, dibuka dari <code>http://localhost:8000</code>.",
             "Jika Ollama tidak terjangkau, tool otomatis kembali ke mode bawaan."
         ]
