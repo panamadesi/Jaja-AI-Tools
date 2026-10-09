@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JAJA AI TOOLS - Pabrik Konten</title>
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/extra.css">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<meta name="description" content="Alur 3 langkah: ide, karakter, storyboard untuk drama/film dan music clip.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="JAJA AI TOOLS - Pabrik Konten">
+<meta property="og:description" content="Alur 3 langkah: ide, karakter, storyboard untuk drama/film dan music clip.">
+<meta property="og:image" content="https://panamadesi.github.io/Jaja-AI-Tools/assets/header.png">
+<meta property="og:url" content="https://panamadesi.github.io/Jaja-AI-Tools/HOME/pabrik-konten.html">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body>
+
+<div class="container">
+
+<header class="header">
+    <img src="../assets/header.png" class="header-banner">
+</header>
+
+<nav class="menu-bar" id="nav"></nav>
+
+
+<div class="card">
+    <div class="chips" id="mode"></div>
+    <div class="steps" id="steps"><span class="on">1. Ide</span><span>2. Karakter</span><span>3. Storyboard</span></div>
+</div>
+
+<div class="main" style="margin-top:20px">
+
+<div class="left-panel">
+
+    <div class="card" id="boxIde">
+        <h2>1. Ide</h2>
+        <label class="lbl" id="lblIde">Ide cerita</label>
+        <textarea id="ide" class="md" placeholder="Contoh: Seorang anak kampung menemukan batu yang bisa menangis"></textarea>
+        <div class="row">
+            <div><label class="lbl" id="lblGenre">Genre</label><select id="genre"></select></div>
+            <div><label class="lbl">Gaya visual</label><select id="visual"></select></div>
+        </div>
+        <div class="row">
+            <div><label class="lbl">Jumlah scene</label><select id="jml"></select></div>
+            <div><label class="lbl">Durasi per scene</label><select id="dur"></select></div>
+        </div>
+        <div class="row">
+            <div><label class="lbl">Rasio</label><select id="rasio"></select></div>
+            <div><label class="lbl">Lokasi tema</label><select id="lokasi"></select></div>
+        </div>
+        <div id="musicOnly" hidden>
+            <label class="lbl">Judul lagu</label>
+            <input type="text" id="judul" placeholder="Judul lagu">
+            <label class="lbl">Tempo lagu</label>
+            <select id="tempo"></select>
+            <label class="lbl">Pakai wajah sendiri (opsional)</label>
+            <input type="file" id="face" accept="image/*">
+            <p class="hint">Gambar hanya ditampilkan di browser. Unggah sendiri ke generator saat membuat gambar, dengan prompt yang sudah disiapkan di sini.</p>
+        </div>
+    </div>
+
+    <div class="card" id="boxChar">
+        <h2>2. Karakter</h2>
+        <label class="lbl">Deskripsi karakter utama</label>
+        <textarea id="karakter" class="sm" placeholder="Contoh: young Indonesian boy, short black hair, simple kampung clothes"></textarea>
+        <div class="btn-row">
+            <button class="ghost" id="lastChar">🧍 Ambil dari Character Generator</button>
+        </div>
+        <div class="btn-row">
+            <button id="build">🚀 Buat Karakter + Storyboard</button>
+        </div>
+        <label class="lbl" style="margin-top:12px"><input type="checkbox" id="useAI"> Kembangkan alur dengan AI lokal (Ollama)</label>
+        <p class="hint" id="aiStatus"></p>
+    </div>
+
+</div>
+
+<div class="right-panel">
+
+    <div class="card">
+        <h2>🧑 Character Sheet</h2>
+        <textarea id="sheet" class="md" placeholder="Prompt character sheet muncul di sini..."></textarea>
+        <div class="btn-row"><button class="ghost" id="copySheet">📋 Copy</button></div>
+    </div>
+
+    <div class="card">
+        <h2>🎨 Master Style</h2>
+        <textarea id="master" class="sm"></textarea>
+        <p class="hint">Blok ini otomatis ditempel di setiap prompt gambar supaya konsisten.</p>
+    </div>
+
+    <div class="card">
+        <h2>🎞 Storyboard</h2>
+        <div class="btn-row" style="margin-top:0;margin-bottom:12px">
+            <button id="copyAll">📋 Copy semua</button>
+            <button class="ghost" id="exp">💾 Export TXT</button>
+        </div>
+        <div id="board"><p class="hint">Isi ide lalu klik "Buat Karakter + Storyboard".</p></div>
+    </div>
+
+</div>
+
+</div>
+
+
+</div>
+
+<script src="../js/common.js"></script>
+<script src="../js/pabrik.js"></script>
+</body>
+</html>

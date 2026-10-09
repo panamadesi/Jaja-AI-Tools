@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JAJA AI TOOLS - UGC Konten</title>
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/extra.css">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<meta name="description" content="Hook, naskah, CTA, hashtag, dan storyboard untuk video jualan TikTok, Reels, dan Shopee Video.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="JAJA AI TOOLS - UGC Konten">
+<meta property="og:description" content="Hook, naskah, CTA, hashtag, dan storyboard untuk video jualan TikTok, Reels, dan Shopee Video.">
+<meta property="og:image" content="https://panamadesi.github.io/Jaja-AI-Tools/assets/header.png">
+<meta property="og:url" content="https://panamadesi.github.io/Jaja-AI-Tools/HOME/ugc.html">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body>
+
+<div class="container">
+
+<header class="header">
+    <img src="../assets/header.png" class="header-banner">
+</header>
+
+<nav class="menu-bar" id="nav"></nav>
+
+
+<div class="main">
+
+<div class="left-panel">
+
+    <div class="card">
+        <h2>Produk</h2>
+        <label class="lbl">Nama produk</label>
+        <input type="text" id="produk" placeholder="Contoh: Serum Vitamin C Glowing">
+        <label class="lbl">Manfaat / keunggulan utama (pisahkan dengan koma)</label>
+        <textarea id="manfaat" class="sm" placeholder="mencerahkan, ringan di kulit, cepat meresap"></textarea>
+        <label class="lbl">Target pembeli</label>
+        <input type="text" id="target" placeholder="Contoh: cewek kuliahan dengan kulit kusam">
+        <label class="lbl">Harga / promo</label>
+        <input type="text" id="promo" placeholder="Contoh: Rp59.000, diskon 30% hari ini">
+    </div>
+
+    <div class="card">
+        <h2>Gaya Video</h2>
+        <div class="row">
+            <div><label class="lbl">Platform</label><select id="platform"></select></div>
+            <div><label class="lbl">Durasi</label><select id="durasi"></select></div>
+        </div>
+        <div class="row">
+            <div><label class="lbl">Gaya jualan</label><select id="gaya"></select></div>
+            <div><label class="lbl">Nada bicara</label><select id="nada"></select></div>
+        </div>
+        <div class="row">
+            <div><label class="lbl">Pemeran</label><select id="aktor"></select></div>
+            <div><label class="lbl">Lokasi</label><select id="lokasi"></select></div>
+        </div>
+        <div class="btn-row">
+            <button id="go">🚀 Generate</button>
+            <button class="ghost" id="again">🎲 Generate ulang</button>
+        </div>
+        <label class="lbl" style="margin-top:12px"><input type="checkbox" id="useAI"> Poles naskah dengan AI lokal (Ollama)</label>
+        <p class="hint" id="aiStatus"></p>
+    </div>
+
+</div>
+
+<div class="right-panel">
+
+    <div class="card">
+        <h2>🎣 Hook</h2>
+        <textarea id="hooks" class="sm"></textarea>
+    </div>
+
+    <div class="card">
+        <h2>📝 Naskah</h2>
+        <textarea id="script" class="lg"></textarea>
+    </div>
+
+    <div class="card">
+        <h2>📣 CTA &amp; Hashtag</h2>
+        <textarea id="cta" class="sm"></textarea>
+        <div class="btn-row">
+            <button id="copyAll">📋 Copy semua</button>
+            <button class="ghost" id="exp">💾 Export TXT</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>🎞 Storyboard</h2>
+        <p class="hint">Buat gambar frame dari prompt gambar, lalu pakai prompt video untuk menganimasikannya.</p>
+        <div id="board"></div>
+    </div>
+
+</div>
+
+</div>
+
+
+</div>
+
+<script src="../js/common.js"></script>
+<script src="../js/ugc.js"></script>
+</body>
+</html>

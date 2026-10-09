@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JAJA AI TOOLS - Character Clone</title>
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/extra.css">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<meta name="description" content="Master prompt untuk meniru pose, outfit, rambut, lokasi, dan kamera dari gambar referensi.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="JAJA AI TOOLS - Character Clone">
+<meta property="og:description" content="Master prompt untuk meniru pose, outfit, rambut, lokasi, dan kamera dari gambar referensi.">
+<meta property="og:image" content="https://panamadesi.github.io/Jaja-AI-Tools/assets/header.png">
+<meta property="og:url" content="https://panamadesi.github.io/Jaja-AI-Tools/HOME/character-clone.html">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body>
+
+<div class="container">
+
+<header class="header">
+    <img src="../assets/header.png" class="header-banner">
+</header>
+
+<nav class="menu-bar" id="nav"></nav>
+
+
+<div class="card">
+    <h2>🧬 Character Clone</h2>
+    <p class="hint">Upload gambar referensi per kategori, centang bagian yang ingin ditiru, lalu salin master prompt ke
+    generator yang mendukung banyak gambar referensi (Gemini/Nano Banana, dll). Gambar tidak diunggah ke mana pun; hanya tampil di browser Anda.</p>
+    <div class="slots" id="slots"></div>
+</div>
+
+<div class="main" style="margin-top:20px">
+
+<div class="left-panel">
+    <div class="card">
+        <h2>Pengaturan</h2>
+        <label class="lbl">Target generator</label>
+        <select id="target"></select>
+        <label class="lbl">Instruksi tambahan (opsional)</label>
+        <textarea id="extra" class="sm" placeholder="Contoh: ubah ekspresi jadi tersenyum, tambahkan hijab warna krem"></textarea>
+        <div class="btn-row"><button id="build">🚀 Buat Master Prompt</button></div>
+    </div>
+</div>
+
+<div class="right-panel">
+    <div class="card">
+        <h2>Master Prompt</h2>
+        <p class="hint" id="order"></p>
+        <textarea id="out" class="lg" placeholder="Master prompt muncul di sini..."></textarea>
+        <div class="btn-row">
+            <button id="copy">📋 Copy</button>
+            <button class="ghost" id="exp">💾 Export TXT</button>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+</div>
+
+<script src="../js/common.js"></script>
+<script src="../js/clone.js"></script>
+</body>
+</html>

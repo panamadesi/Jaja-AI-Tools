@@ -60,9 +60,21 @@
         location.reload();
     });
 
-    // ---------- karakter -> motion ----------
+    // ---------- karakter -> motion / gambar ----------
 
     if (page === "character-generator.html") {
+
+        document.getElementById("generateBtn").addEventListener("click", () => {
+            JAJA.store("jaja_char_prompt", document.getElementById("hasil").value);
+        });
+
+        tambahTombol("🖼 Buat Gambar", () => {
+            const hasil = document.getElementById("hasil");
+            if (!hasil.value.trim()) document.getElementById("generateBtn").click();
+            if (!hasil.value.trim()) return;
+            JAJA.store("jaja_img_prompt", hasil.value.replace(/\s+/g, " ").trim());
+            location.href = "image-generator.html";
+        });
 
         tambahTombol("🎬 Kirim ke Motion", () => {
 
@@ -82,7 +94,8 @@
                 .filter(Boolean).join(" ") +
                 [hair, outfit].filter(Boolean).map(t => ", " + t).join("");
 
-            try { localStorage.setItem("jaja_subject", subject); } catch (e) { }
+            JAJA.store("jaja_subject", subject);
+            JAJA.store("jaja_last_character", subject);
 
             location.href = "motion-prompt.html";
         });

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JAJA AI TOOLS - Image Generator</title>
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/extra.css">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<meta name="description" content="Text to image gratis tanpa token, langsung dari browser.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="JAJA AI TOOLS - Image Generator">
+<meta property="og:description" content="Text to image gratis tanpa token, langsung dari browser.">
+<meta property="og:image" content="https://panamadesi.github.io/Jaja-AI-Tools/assets/header.png">
+<meta property="og:url" content="https://panamadesi.github.io/Jaja-AI-Tools/HOME/image-generator.html">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body>
+
+<div class="container">
+
+<header class="header">
+    <img src="../assets/header.png" class="header-banner">
+</header>
+
+<nav class="menu-bar" id="nav"></nav>
+
+
+<div class="main">
+
+<div class="left-panel">
+
+    <div class="card">
+        <h2>Prompt</h2>
+        <textarea id="prompt" class="md" placeholder="Deskripsikan gambar yang diinginkan (bahasa Inggris paling akurat)..."></textarea>
+        <label class="lbl">Negative prompt</label>
+        <textarea id="neg" class="sm"></textarea>
+        <div class="btn-row">
+            <button class="ghost" id="enhanceBtn">✨ Perbaiki prompt</button>
+            <button class="ghost" id="fromChar">🧍 Dari Character Generator</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Pengaturan</h2>
+        <label class="lbl">Mesin</label>
+        <select id="engine"></select>
+        <p class="hint" id="engineNote"></p>
+        <div id="comfyBox">
+            <label class="lbl">Alamat ComfyUI</label>
+            <input type="text" id="comfyUrl" value="http://127.0.0.1:8188">
+            <label class="lbl">Checkpoint</label>
+            <select id="ckpt"></select>
+            <button class="ghost sm" id="reload">🔄 Muat ulang daftar</button>
+        </div>
+        <label class="lbl">Ukuran</label>
+        <select id="size"></select>
+        <div id="modelBox">
+        <label class="lbl">Model</label>
+        <select id="model"></select>
+        </div>
+        <label class="lbl">Jumlah gambar</label>
+        <select id="count"></select>
+        <label class="lbl"><input type="checkbox" id="randSeed" checked> Seed acak setiap generate</label>
+        <input type="number" id="seed" placeholder="Seed (opsional)" style="margin-top:8px">
+        <div class="btn-row"><button id="go">🚀 Generate</button></div>
+    </div>
+
+    <div class="card">
+        <h2>Image to Image</h2>
+        <p class="hint">Mode ini butuh model edit gambar (misalnya Gemini/Nano Banana). Buat master prompt-nya di
+        <a href="character-clone.html" style="color:#38bdf8">Character Clone</a>, lalu tempel di Gemini bersama gambar referensi Anda.</p>
+    </div>
+
+</div>
+
+<div class="right-panel">
+    <div class="card">
+        <h2>Hasil</h2>
+        <p class="hint" id="note">Mesin ComfyUI berjalan di komputer Anda sendiri. Mesin Pollinations mengirim prompt ke layanan pihak ketiga (image.pollinations.ai), jadi jangan memasukkan data pribadi.</p>
+        <div class="gallery" id="gallery"></div>
+    </div>
+</div>
+
+</div>
+
+
+</div>
+
+<script src="../js/common.js"></script>
+<script src="../js/image.js"></script>
+</body>
+</html>

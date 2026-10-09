@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JAJA AI TOOLS - Prompt Enhancer</title>
 <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/extra.css">
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <meta name="description" content="Ubah ide singkat jadi prompt gambar atau video yang lengkap.">
 <meta property="og:type" content="website">
@@ -23,12 +24,7 @@
     <img src="../assets/header.png" class="header-banner">
 </header>
 
-<nav class="menu-bar">
-    <a href="character-generator.html">🧍 Character Generator</a>
-    <a href="motion-prompt.html">🎬 Motion Prompt</a>
-    <a href="prompt-enhancer.html" class="active">✨ Prompt Enhancer</a>
-    <a href="../index.html">🏠 Home</a>
-</nav>
+<nav class="menu-bar" id="nav"></nav>
 
 <div class="main">
 
@@ -62,6 +58,7 @@
                 <button id="generateBtn">🚀 Enhance</button>
                 <button id="copyBtn">📋 Copy</button>
                 <button id="exportBtn">💾 Export TXT</button>
+                <button id="imgBtn">🖼 Buat Gambar</button>
             </div>
         </div>
 
@@ -79,6 +76,8 @@
 </div>
 
 </div>
+
+<script src="../js/common.js"></script>
 
 <script src="../js/enhancer.js"></script>
 

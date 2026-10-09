@@ -2,10 +2,19 @@
 
 Kumpulan tool gratis untuk AI content creator. Semua berjalan di browser, tanpa server.
 
-- **Character Generator**: prompt karakter realistis (ras, outfit, lokasi, lighting, kamera). Pilihan tersimpan otomatis.
-- **Motion Prompt Generator**: prompt video untuk Wan 2.2, Seedance, Kling, dan Veo 3. Menerima karakter dari Character Generator lewat tombol "Kirim ke Motion".
-- **Prompt Enhancer**: ide singkat (Indonesia atau Inggris) menjadi prompt lengkap. Mode bawaan tanpa internet, opsional memakai Ollama `qwen2.5:7b` lokal.
-- **Featured AI Characters**: klik gambar untuk melihat dan menyalin prompt-nya.
+| Modul | Fungsi |
+|---|---|
+| Pabrik Konten | Ide, character sheet, dan storyboard (prompt gambar + video per scene) untuk Drama/Film dan Music Clip |
+| Character Generator | Prompt karakter realistis; kirim ke Motion Control atau Image Generator |
+| Character Clone | Master prompt untuk meniru pose, outfit, rambut, lokasi, dan kamera dari gambar referensi |
+| Image Generator | Text to image lewat ComfyUI lokal (SDXL) atau Pollinations (512x512) |
+| Motion Control | Prompt video untuk Wan 2.2, Seedance, Kling, Veo 3 |
+| Prompt Siap Pakai | 40 prompt siap salin (portrait, fashion, produk, sinematik, thumbnail) |
+| UGC Konten | Hook, naskah bertimestamp, CTA, hashtag, dan storyboard jualan |
+| Prompt Enhancer | Ide singkat menjadi prompt lengkap (mode bawaan atau Ollama lokal) |
+| Jaja Bundle | Alur 3 langkah dan daftar web AI pembuat konten |
+
+Pilihan di Character Generator dan Motion Control tersimpan otomatis di browser.
 
 ## Jalankan lokal
 
@@ -15,15 +24,30 @@ python -m http.server 8000
 
 Buka http://localhost:8000/ dari folder proyek ini.
 
-## Prompt Enhancer dengan Ollama
+## Image Generator dengan ComfyUI
 
-Jalankan `ollama serve` dan pastikan model `qwen2.5:7b` sudah di-pull. Pakai dari `http://localhost:8000`, karena halaman `https://` biasanya diblokir browser saat memanggil `http://localhost`.
+Browser hanya boleh memanggil ComfyUI jika ComfyUI dijalankan dengan izin CORS untuk `http://localhost:8000`:
+
+```bat
+python_embeded\python.exe -s ComfyUI\main.py --windows-standalone-build --enable-cors-header "http://localhost:8000"
+```
+
+Buka Image Generator dari `http://localhost:8000` (bukan dari situs `https://`). Tanpa ComfyUI, pilih mesin Pollinations (hanya 512x512).
+
+## AI lokal (opsional)
+
+Prompt Enhancer, UGC Konten, dan Pabrik Konten (Drama/Film) bisa memakai Ollama `qwen2.5:7b` untuk memperkaya hasil. Jalankan `ollama serve` dan buka dari `http://localhost:8000`. Tanpa Ollama, semua tetap jalan dengan aturan bawaan.
 
 ## Struktur
 
 ```
 index.html          beranda
-HOME/               halaman tool
+HOME/               halaman modul
 js/ css/ data/      script, gaya, data
 assets/             gambar, video, ikon
 ```
+
+## Kredit
+
+Daftar web AI di Jaja Bundle berasal dari deskripsi video
+[GENERATOR AI 2026 TERBARU](https://www.youtube.com/watch?v=SyXptMYmBy8) milik Jaja Tip Tutorial.
