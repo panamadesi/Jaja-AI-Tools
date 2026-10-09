@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JAJA AI TOOLS - Prompt Enhancer</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<header class="header">
+    <img src="../assets/header.png" class="header-banner">
+</header>
+
+<nav class="menu-bar">
+    <a href="character-generator.html">🧍 Character Generator</a>
+    <a href="motion-prompt.html">🎬 Motion Prompt</a>
+    <a href="prompt-enhancer.html" class="active">✨ Prompt Enhancer</a>
+    <a href="../index.html">🏠 Home</a>
+</nav>
+
+<div class="main">
+
+    <div class="left-panel">
+
+        <div class="card">
+            <h2>Ide Singkat</h2>
+            <textarea id="idea" rows="5" placeholder="Contoh: cewek kebaya jalan di sawah pagi hari"></textarea>
+        </div>
+
+        <div class="card">
+            <h2>Pengaturan</h2>
+            <select id="type"></select>
+            <select id="style"></select>
+            <select id="level"></select>
+            <label style="display:block;margin-top:12px">
+                <input type="checkbox" id="useAI">
+                Pakai AI lokal (Ollama qwen2.5:7b)
+            </label>
+            <small id="aiStatus">Mati: memakai aturan bawaan, tanpa internet.</small>
+        </div>
+
+    </div>
+
+    <div class="right-panel">
+
+        <div class="card">
+            <h2>Hasil Prompt</h2>
+            <textarea id="hasil" placeholder="Prompt yang sudah diperbaiki muncul di sini..."></textarea>
+            <div class="button-group">
+                <button id="generateBtn">🚀 Enhance</button>
+                <button id="copyBtn">📋 Copy</button>
+                <button id="exportBtn">💾 Export TXT</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Catatan</h2>
+            <p style="line-height:1.6">
+                Mode bawaan menerjemahkan kata kunci umum ke bahasa Inggris dan menambah detail kualitas.
+                Mode AI lokal butuh Ollama yang berjalan di komputer ini (<code>ollama serve</code>) dan model
+                <code>qwen2.5:7b</code>. Jika gagal, otomatis kembali ke mode bawaan.
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+<script src="../js/enhancer.js"></script>
+
+</body>
+</html>

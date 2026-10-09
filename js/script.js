@@ -198,14 +198,25 @@ function isiDropdown(id, data, placeholder) {
 
     select.appendChild(firstOption);
 
+    let parent = select;
+
     data.forEach(item => {
+
+        const header = /^=+\s*(.+?)\s*=+$/.exec(item);
+
+        if (header) {
+            parent = document.createElement("optgroup");
+            parent.label = header[1];
+            select.appendChild(parent);
+            return;
+        }
 
         const option = document.createElement("option");
 
         option.value = item;
         option.textContent = item;
 
-        select.appendChild(option);
+        parent.appendChild(option);
 
     });
 
@@ -281,8 +292,8 @@ const genderPrompt = genderAI[gender] || gender;
 
 const umurAI = {
     "18-25":"approximately 22 years old",
-    "26-35":"approximately 30 years old",
-    "36-45":"approximately 40 years old",
+    "25-35":"approximately 30 years old",
+    "35-45":"approximately 40 years old",
     "46-60":"approximately 50 years old",
     "60+":"elderly"
 };
