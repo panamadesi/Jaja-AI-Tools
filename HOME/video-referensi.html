@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JAJA AI TOOLS - Referensi Video</title>
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/extra.css">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<meta name="description" content="Ambil frame kunci dari video referensi dan susun prompt gerakan berurutan, semuanya di browser.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="JAJA AI TOOLS - Referensi Video">
+<meta property="og:description" content="Ambil frame kunci dari video referensi dan susun prompt gerakan berurutan, semuanya di browser.">
+<meta property="og:image" content="https://panamadesi.github.io/Jaja-AI-Tools/assets/header.png">
+<meta property="og:url" content="https://panamadesi.github.io/Jaja-AI-Tools/HOME/video-referensi.html">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body>
+
+<div class="container">
+
+<header class="header">
+    <img src="../assets/header.png" class="header-banner">
+</header>
+
+<nav class="menu-bar" id="nav"></nav>
+
+<div class="main">
+
+<div class="left-panel">
+
+    <div class="card">
+        <h2>1. Video Referensi</h2>
+        <label class="upload-box" style="display:block;text-align:center;padding:18px;border:1px dashed rgba(56,189,248,.5);border-radius:12px;cursor:pointer">
+            <input type="file" id="file" accept="video/*" style="display:none">
+            <div style="font-size:34px">🎞</div>
+            <div>Klik atau jatuhkan video di sini</div>
+            <small class="hint">MP4, WEBM, MOV (H.264). Tidak diunggah ke server.</small>
+        </label>
+        <p class="hint" id="info"></p>
+        <video id="player" controls playsinline style="display:none;width:100%;border-radius:12px;margin-top:8px;max-height:360px;background:#000"></video>
+    </div>
+
+    <div class="card">
+        <h2>2. Ambil Frame</h2>
+        <label class="lbl">Cara pengambilan</label>
+        <select id="mode"></select>
+        <div class="btn-row">
+            <button id="extract">🎬 Ambil Frame Otomatis</button>
+            <button class="ghost" id="grab">📸 Ambil Frame Saat Ini</button>
+        </div>
+        <p class="hint" id="status"></p>
+    </div>
+
+    <div class="card">
+        <h2>3. Prompt</h2>
+        <label class="lbl">Siapa yang bergerak (bahasa Inggris, singkat)</label>
+        <input type="text" id="subject" placeholder="Contoh: a young Indonesian woman in a green kebaya">
+        <label class="lbl"><input type="checkbox" id="withTimeline" checked> Sertakan timeline per detik (Seedance, Kling)</label>
+        <div class="btn-row">
+            <button id="build">🚀 Susun Prompt Gerakan</button>
+        </div>
+    </div>
+
+</div>
+
+<div class="right-panel">
+
+    <div class="card">
+        <h2>Frame Kunci</h2>
+        <p class="hint">Pilih gerakan pada tiap frame atau tulis sendiri (bahasa Inggris). Frame tanpa catatan dilewati.</p>
+        <div class="frames" id="frames"><p class="hint">Belum ada frame. Unggah video lalu klik "Ambil Frame Otomatis".</p></div>
+        <div class="btn-row">
+            <button class="ghost" id="sheet">🖼 Unduh Kontak Sheet (PNG)</button>
+            <button class="ghost" id="clear">🗑 Hapus semua frame</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Prompt Gerakan</h2>
+        <textarea id="hasil" class="lg" placeholder="Prompt muncul di sini..."></textarea>
+        <label class="lbl">Negative prompt</label>
+        <textarea id="neg" class="sm"></textarea>
+        <div class="btn-row">
+            <button id="copy">📋 Copy</button>
+            <button class="ghost" id="exp">💾 Export TXT</button>
+            <button class="ghost" id="toMotion">🎬 Kirim ke Motion Control</button>
+        </div>
+    </div>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="../js/guides.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/referensi.js"></script>
+</body>
+</html>

@@ -459,3 +459,48 @@ text-overflow:ellipsis;
 color:#94a3b8;
 font-size:12px;
 }
+
+
+/* referensi video: daftar frame */
+.frames{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
+gap:12px;
+}
+
+.frame{
+background:#0f172a;
+border:1px solid rgba(255,255,255,.07);
+border-radius:12px;
+padding:8px;
+display:flex;
+flex-direction:column;
+gap:6px;
+}
+
+.frame img{
+width:100%;
+border-radius:8px;
+cursor:pointer;
+display:block;
+}
+
+.frame .fhead{
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:13px;
+color:#38bdf8;
+}
+
+.frame select{
+margin:0;
+padding:8px;
+font-size:13px;
+}
+
+.frame textarea{
+height:64px;
+font-size:13px;
+padding:8px;
+}

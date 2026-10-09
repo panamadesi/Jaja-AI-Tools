@@ -9,6 +9,7 @@ Kumpulan tool gratis untuk AI content creator. Semua berjalan di browser, tanpa 
 | Character Clone | Master prompt untuk meniru pose, outfit, rambut, lokasi, dan kamera dari gambar referensi |
 | Image Generator | Text to image lewat ComfyUI lokal (SDXL) atau Pollinations (512x512) |
 | Motion Control | Prompt video untuk Wan 2.2, Seedance, Kling, Veo 3 |
+| Referensi Video | Unggah video lokal, ambil frame kunci, susun prompt gerakan berurutan (diproses di browser) |
 | Prompt Siap Pakai | 40 prompt siap salin (portrait, fashion, produk, sinematik, thumbnail) |
 | UGC Konten | Hook, naskah bertimestamp, CTA, hashtag, dan storyboard jualan |
 | Prompt Enhancer | Ide singkat menjadi prompt lengkap: kamus ±500 kata, deteksi jenis konten, atau Ollama lokal |

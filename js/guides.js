@@ -75,6 +75,24 @@ const GUIDES = {
         ]
     },
 
+    "video-referensi.html": {
+        title: "Referensi Video",
+        goal: "Mengubah video referensi gerakan (misalnya joget atau jalan) menjadi frame kunci dan prompt gerakan berurutan.",
+        steps: [
+            "Klik kotak <b>Video Referensi</b> atau jatuhkan file video. Video diputar di browser Anda dan tidak diunggah ke server.",
+            "Pilih cara pengambilan (misalnya 8 frame atau tiap 2 detik), lalu klik <b>Ambil Frame Otomatis</b>. Untuk momen tertentu, putar video ke posisinya lalu klik <b>Ambil Frame Saat Ini</b>.",
+            "Pada tiap frame, pilih gerakan dari daftar atau tulis sendiri (bahasa Inggris). Frame tanpa catatan dilewati.",
+            "Isi <b>siapa yang bergerak</b> (singkat, bahasa Inggris) lalu klik <b>Susun Prompt Gerakan</b>.",
+            "Klik <b>Copy</b>, atau <b>Kirim ke Motion Control</b> untuk melengkapi dengan kamera, gaya, dan audio."
+        ],
+        next: "Di generator video (Kling, Seedance, Wan, dan sejenisnya), unggah video referensi asli dan tempel prompt ini. Unduh <b>Kontak Sheet</b> bila generator menerima gambar referensi.",
+        tips: [
+            "Tool ini tidak memahami isi video secara otomatis. Anda yang menentukan gerakan tiap frame, tool menyusunnya berurutan dengan timestamp.",
+            "Video 5 sampai 15 detik dengan satu gerakan jelas paling mudah dipetakan. Ambil lebih banyak frame bila gerakannya cepat.",
+            "Jika video tidak terbaca, ekspor ulang ke MP4 (H.264). Beberapa file ponsel memakai codec HEVC yang tidak didukung semua browser."
+        ]
+    },
+
     "prompt-library.html": {
         title: "Prompt Siap Pakai",
         goal: "Mengambil prompt jadi untuk gambar, video, produk, dan thumbnail.",

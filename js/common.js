@@ -9,6 +9,7 @@ window.JAJA = (function () {
         ["character-clone.html", "🧬 Character Clone"],
         ["image-generator.html", "🖼 Image Generator"],
         ["motion-prompt.html", "🎬 Motion Control"],
+        ["video-referensi.html", "🎞 Referensi Video"],
         ["prompt-library.html", "📚 Prompt Siap Pakai"],
         ["pabrik-konten.html", "🏭 Pabrik Konten"],
         ["ugc.html", "🛍 UGC Konten"],
