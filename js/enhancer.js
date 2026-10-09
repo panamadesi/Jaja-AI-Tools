@@ -196,9 +196,7 @@ const fromImage = JAJA.take("jaja_enh_idea");
 if (fromImage) $("idea").value = fromImage;
 
 $("imgBtn").addEventListener("click", () => {
-    const text = $("hasil").value.split("
-
-Negative:")[0].trim();
+    const text = $("hasil").value.split("\n\nNegative:")[0].trim();
     if (!text) return JAJA.toast("Enhance dulu");
     JAJA.store("jaja_img_prompt", text);
     location.href = "image-generator.html";
