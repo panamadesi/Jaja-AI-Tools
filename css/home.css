@@ -773,3 +773,10 @@ flex-direction:column;
 width:100%;
 }
 }
+
+
+@media(max-width:700px){
+.motion-grid{
+grid-template-columns:1fr;
+}
+}

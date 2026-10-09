@@ -46,6 +46,10 @@ const MOTION = {
         "Berdiri diam (bernapas)": "standing still, breathing gently, subtle blinking and tiny head movement",
         "Rambut tertiup angin": "standing as the wind moves hair and clothing gently",
         "Bertarung (slow motion)": "performing a fast martial arts strike in slow motion with controlled movement",
+        "Naik motor":"riding a motorbike slowly down the street, wind in the clothes",
+        "Berfoto selfie":"taking a selfie with a phone, smiling and tilting the head",
+        "Menyeberang jalan":"crossing the street carefully, looking left and right",
+        "Berdoa/merenung":"standing quietly with eyes closed, a calm reflective moment",
         "Melambaikan tangan": "waving at the camera with a friendly smile"
     },
 
@@ -59,6 +63,9 @@ const MOTION = {
         "Studio": "in a clean photography studio with a plain backdrop",
         "Hutan": "in a misty tropical forest with sunbeams through the trees",
         "Pasar tradisional": "in a busy traditional market with colorful produce stalls",
+        "Stasiun KRL":"on a busy Jakarta commuter train platform as a train arrives",
+        "Warung kopi":"in a small roadside warung with steaming glasses of coffee",
+        "Gunung berkabut":"on a misty mountain ridge at sunrise, clouds below",
         "Candi": "in front of an ancient stone temple at dawn"
     },
 
@@ -102,6 +109,8 @@ const MOTION = {
         "Anime": "high-quality anime style animation",
         "3D Pixar": "3D animated family film style, expressive characters",
         "Fantasi": "epic fantasy film look, rich color grading",
+        "Folklore 3D":"3D animated Indonesian folk tale style, warm colors, expressive characters",
+        "Vintage 35mm":"vintage 35mm film look, warm tones, light leaks, grain",
         "Hitam putih": "black and white film, high contrast, fine grain"
     },
 

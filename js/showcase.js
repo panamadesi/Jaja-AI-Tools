@@ -41,3 +41,12 @@ document.getElementById("modalCopy").addEventListener("click", () => {
     navigator.clipboard.writeText(document.getElementById("modalPrompt").value);
     document.getElementById("modalCopy").textContent = "✅ Tersalin";
 });
+
+// ==========================
+// MOTION SHOWCASE: putar saat hover
+// ==========================
+
+document.querySelectorAll(".motion-grid video").forEach(v => {
+    v.addEventListener("mouseenter", () => v.play().catch(() => { }));
+    v.addEventListener("mouseleave", () => v.pause());
+});

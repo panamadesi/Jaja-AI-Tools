@@ -16,7 +16,11 @@ const DATA = {
             "Batak",
             "Bugis",
             "Dayak",
-            "Bali"
+            "Bali",
+            "Minang",
+            "Betawi",
+            "Madura",
+            "Melayu"
         ],
 
         Jepang: [
@@ -76,7 +80,13 @@ const DATA = {
         "Garage",
         "Beach",
         "Rice Field",
-        "Street"
+        "Street",
+        "Rooftop",
+        "Mall",
+        "Ancient Temple",
+        "Traditional Market",
+        "Mountain",
+        "Night City"
     ],
 
     lighting:[
@@ -95,7 +105,9 @@ const DATA = {
         "Full Body",
         "POV",
         "Drone",
-        "Selfie"
+        "Selfie",
+        "Low Angle",
+        "Over The Shoulder"
     ],
 
     outfit: [
@@ -152,6 +164,14 @@ const DATA = {
 
 
 
+"Ulos Batak",
+
+"Baju Kurung Melayu",
+
+"Ao Dai",
+
+"Sari",
+
 "===== PROFESSIONAL =====",
 
 "Doctor",
@@ -195,6 +215,20 @@ const DATA = {
 "Assassin",
 
 
+
+"===== SEHARI-HARI INDONESIA =====",
+
+"Gamis & Hijab",
+
+"Seragam SMA",
+
+"Jaket Ojol",
+
+"Baju Koko",
+
+"Daster Rumahan",
+
+"Batik Kantor",
 
 "===== COSPLAY =====",
 

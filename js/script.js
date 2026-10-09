@@ -102,6 +102,26 @@ hairColor:{
 
 outfit:{
 
+"Ulos Batak":"wearing traditional Batak ulos cloth with woven geometric pattern, authentic cultural attire",
+
+"Baju Kurung Melayu":"wearing a Malay baju kurung, matching songket skirt, elegant modest style",
+
+"Ao Dai":"wearing a Vietnamese ao dai, flowing silk, fitted tunic with wide trousers",
+
+"Sari":"wearing an elegant silk sari, intricate border, graceful drape",
+
+"Gamis & Hijab":"wearing a modest long gamis dress with a matching hijab, soft pastel fabric",
+
+"Seragam SMA":"wearing an Indonesian senior high school uniform, white shirt and grey skirt or trousers",
+
+"Jaket Ojol":"wearing an Indonesian motorbike taxi driver jacket and helmet, urban street style",
+
+"Baju Koko":"wearing a Muslim baju koko shirt with a peci cap, clean and neat",
+
+"Daster Rumahan":"wearing a comfortable batik daster house dress, relaxed home style",
+
+"Batik Kantor":"wearing a refined batik office shirt, professional Indonesian formal style",
+
 "Casual":"wearing premium casual outfit with realistic cotton fabric",
 
 "Streetwear":"wearing luxury oversized streetwear, layered fashion, premium fabric",
@@ -125,6 +145,18 @@ outfit:{
 },
 
 location:{
+
+"Rooftop":"on a city rooftop at golden hour, skyline in the background, open sky",
+
+"Mall":"inside a modern shopping mall, bright interior, glass storefronts",
+
+"Ancient Temple":"in front of an ancient stone temple, carved reliefs, misty morning",
+
+"Traditional Market":"in a busy traditional Indonesian market, colorful stalls, lively atmosphere",
+
+"Mountain":"on a mountain trail with panoramic views, fresh air, soft clouds",
+
+"Night City":"on a city street at night, neon signs, wet asphalt reflections",
 
 "Bedroom":"inside a modern luxury minimalist bedroom, aesthetic interior, clean room, premium furniture",
 
@@ -174,7 +206,9 @@ hairColor:{
 
 "Red":"natural red hair color, realistic texture",
 
-"Gray":"silver gray hair, realistic aging texture"
+"Gray":"silver gray hair, realistic aging texture",
+"Grey":"silver grey hair, realistic aging texture",
+"White":"pure white hair, realistic aging texture"
 
 },
 
@@ -329,7 +363,10 @@ photorealistic,
 ${kualitas}
 `;
 
-    document.getElementById("hasil").value = prompt;
+    document.getElementById("hasil").value = prompt
+        .split("\n")
+        .filter(line => line.replace(/[,\s]/g, ""))
+        .join("\n");
 
 });
 
