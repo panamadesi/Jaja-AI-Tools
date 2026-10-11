@@ -177,6 +177,21 @@ class Handler(BaseHTTPRequestHandler):
         if path == "/health":
             # health boleh dibaca tanpa Origin (cek manual di browser), tapi tidak membocorkan kunci
             return self.send_json(200, {"ok": True, "hasKey": bool(get_key()), "baseUrl": base_url(), "outDir": OUT_DIR})
+        if path == "/check":
+            # uji otentikasi: tanyakan satu ID tugas palsu. 404/400 = kunci diterima; 401/403 = kunci ditolak. Gratis.
+            if not self.origin_ok():
+                return self.send_json(403, {"error": "asal tidak diizinkan"})
+            if not get_key():
+                return self.send_json(200, {"valid": False, "reason": "no_key"})
+            code, obj = self.upstream("GET", "/contents/generations/tasks/cgt-00000000-cek-kunci")
+            detail = obj.get("upstream", obj) if isinstance(obj, dict) else obj
+            err = detail.get("error", {}) if isinstance(detail, dict) else {}
+            msg = (err.get("message") or err.get("code") or "")[:240] if isinstance(err, dict) else ""
+            if code in (401, 403):
+                return self.send_json(200, {"valid": False, "reason": "rejected", "status": code, "message": msg})
+            if code in (400, 404):
+                return self.send_json(200, {"valid": True, "status": code})
+            return self.send_json(200, {"valid": None, "reason": "unknown", "status": code, "message": msg or str(obj)[:240]})
         m = re.fullmatch(r"/tasks/([A-Za-z0-9_\-]{4,100})", path)
         if m:
             if not self.origin_ok():

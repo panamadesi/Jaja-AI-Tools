@@ -43,9 +43,24 @@
         try {
             const r = await fetch(proxy() + "/health", { signal: AbortSignal.timeout(4000) });
             const j = await r.json();
-            el.textContent = j.hasKey
-                ? "✅ Proxy aktif dan kunci API terbaca. Alamat BytePlus: " + j.baseUrl
-                : "⚠️ Proxy aktif, tetapi kunci API belum ada. Buat file seedance-key.txt di folder JAJA AI TOOL (lihat panduan), lalu mulai ulang proxy.";
+            if (!j.hasKey) {
+                el.textContent = "⚠️ Proxy aktif, tetapi kunci API belum ada. Buat file seedance-key.txt (nama harus persis, bukan .txt.txt) di folder JAJA AI TOOL, lalu klik Cek koneksi.";
+                return;
+            }
+
+            el.textContent = "Proxy aktif, kunci terbaca. Menguji apakah BytePlus menerima kunci...";
+
+            // uji otentikasi ke BytePlus (gratis): "terbaca" belum berarti "diterima"
+            const c = await (await fetch(proxy() + "/check", { signal: AbortSignal.timeout(35000) })).json();
+
+            if (c.valid === true) {
+                el.textContent = "✅ Kunci diterima BytePlus. Alamat: " + j.baseUrl;
+            } else if (c.valid === false && c.reason === "rejected") {
+                el.textContent = "❌ BytePlus menolak kunci (" + c.status + "): " + (c.message || "") +
+                    " Salin ulang nilai API Key dari konsol ModelArk (menu API keys) ke seedance-key.txt. Jika akun Anda di Volcengine (China), set ARK_BASE_URL ke ark.cn-beijing.volces.com/api/v3.";
+            } else {
+                el.textContent = "⚠️ Kunci terbaca, tetapi hasil uji tidak jelas (" + (c.status || "?") + "): " + (c.message || "") + " Coba lagi atau cek koneksi internet.";
+            }
         } catch (e) {
             el.textContent = "❌ Proxy belum berjalan. Jalankan JALANKAN-SEEDANCE-PROXY.bat (folder JAJA AI TOOL), lalu klik Cek koneksi. Halaman ini juga harus dibuka dari http://localhost:8000.";
         }
