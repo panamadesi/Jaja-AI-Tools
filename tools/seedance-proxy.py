@@ -54,16 +54,30 @@ def load_conf():
     return conf
 
 
+def clean_key(line):
+    """Rapikan baris kunci: buang 'ARK_API_KEY=', 'Bearer ', tanda kutip, spasi, dan BOM."""
+    line = line.strip().lstrip("﻿").strip()
+    if "=" in line and not line.startswith(("'", '"')):
+        head, _, tail = line.partition("=")
+        if re.fullmatch(r"[A-Za-z_]+", head.strip()):
+            line = tail.strip()
+    if line.lower().startswith("bearer "):
+        line = line[7:].strip()
+    return line.strip("'\"` ")
+
+
 def get_key():
     k = os.environ.get("ARK_API_KEY", "").strip()
     if k:
-        return k
-    if os.path.exists(KEY_FILE):
-        with open(KEY_FILE, encoding="utf-8") as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith("#"):
-                    return line
+        return clean_key(k)
+    # juga menerima nama dengan ekstensi ganda (Notepad sering menyimpan sebagai seedance-key.txt.txt)
+    for path in (KEY_FILE, KEY_FILE + ".txt"):
+        if os.path.exists(path):
+            with open(path, encoding="utf-8-sig", errors="replace") as f:
+                for line in f:
+                    line = line.strip()
+                    if line and not line.startswith("#"):
+                        return clean_key(line)
     return ""
 
 
