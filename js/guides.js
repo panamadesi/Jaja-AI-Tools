@@ -90,7 +90,8 @@ const GUIDES = {
             "Kunci API hanya dibaca proxy lokal dan tidak pernah masuk ke browser, GitHub, atau halaman online. Versi di <code>github.io</code> tidak bisa memakai fitur ini.",
             "Setiap pengiriman memakai kredit akun Anda. Coba dulu 5 detik dengan resolusi terendah.",
             "Kalau BytePlus menolak (muncul pesan galat), isi permintaan bisa diedit langsung; pilih juga \"Flag di dalam prompt\" untuk model yang tidak menerima field JSON.",
-            "Mode \"Gambar referensi\" cocok untuk menjaga wajah atau produk tetap sama; mode \"Gambar → Video\" memakai gambar sebagai frame pertama."
+            "Mode \"Gambar referensi\" cocok untuk menjaga wajah atau produk tetap sama; mode \"Gambar → Video\" memakai gambar sebagai frame pertama.",
+            "Kartu <b>Storyboard Anda</b> muncul bila folder <code>storyboard-malin</code> (paket JAJA DRAMA STUDIO) ada di folder JAJA AI TOOL. Jalankan <code>python Jaja-AI-Tools/tools/storyboard-index.py</code> sekali untuk membuat <code>adegan.json</code>, lalu pilih adegan dan klik <b>Muat adegan ini ke form</b>: gambar, prompt ringkas, durasi, dan rasio terisi otomatis. Hasil kirim tetap Anda cek dulu di langkah 4."
         ]
     },
 

@@ -67,3 +67,13 @@ Halaman Seedance memanggil API BytePlus lewat proxy kecil yang hanya berjalan di
 
 Alamat API default `https://ark.ap-southeast.bytepluses.com/api/v3` bisa diganti lewat `ARK_BASE_URL` atau `seedance-config.json`.
 Setiap pengiriman memakai kredit akun Anda. Versi di GitHub Pages tidak bisa memakai fitur ini.
+
+### Storyboard JAJA DRAMA STUDIO di halaman Seedance
+
+Taruh paket storyboard di `JAJA AI TOOL/storyboard-malin/` (subfolder `gambar/` berisi `SceneXX.png`, `prompt-asli/` berisi `SceneXX.txt`), lalu jalankan:
+
+```bash
+python tools/storyboard-index.py
+```
+
+Skrip membuat `adegan.json` (prompt asli yang panjang diringkas untuk Seedance). Halaman Seedance menampilkan kartu "Storyboard Anda" untuk memilih adegan dan memuat gambar, prompt, durasi, dan rasio ke form. Folder storyboard tidak ikut repo.

@@ -77,6 +77,40 @@
     $("mode").addEventListener("change", () => { showImgBox(); rebuild(); });
     showImgBox();
 
+    // gambar dari berkas atau dari storyboard: diperkecil (maks 1280 px) lalu dikirim sebagai base64
+    function loadImageBlob(blob) {
+
+        return new Promise(resolve => {
+
+            const url = URL.createObjectURL(blob);
+            const im = new Image();
+
+            im.onload = () => {
+                const max = 1280;
+                const s = Math.min(1, max / Math.max(im.width, im.height));
+                const c = document.createElement("canvas");
+                c.width = Math.round(im.width * s);
+                c.height = Math.round(im.height * s);
+                c.getContext("2d").drawImage(im, 0, 0, c.width, c.height);
+                imageData = c.toDataURL("image/jpeg", 0.9);
+                URL.revokeObjectURL(url);
+
+                $("imgPv").src = imageData;
+                $("imgPv").style.display = "block";
+                $("imgInfo").textContent = c.width + "x" + c.height + ", " + Math.round(imageData.length * 0.75 / 1024) + " KB (diperkecil di browser, dikirim sebagai base64)";
+                rebuild();
+                resolve({ w: c.width, h: c.height });
+            };
+
+            im.onerror = () => {
+                $("imgInfo").textContent = "Gambar tidak bisa dibaca.";
+                resolve(null);
+            };
+
+            im.src = url;
+        });
+    }
+
     $("img").addEventListener("change", e => {
 
         const f = e.target.files[0];
@@ -88,27 +122,83 @@
             return rebuild();
         }
 
-        const url = URL.createObjectURL(f);
-        const im = new Image();
+        loadImageBlob(f);
+    });
 
-        im.onload = () => {
-            const max = 1280;
-            const s = Math.min(1, max / Math.max(im.width, im.height));
-            const c = document.createElement("canvas");
-            c.width = Math.round(im.width * s);
-            c.height = Math.round(im.height * s);
-            c.getContext("2d").drawImage(im, 0, 0, c.width, c.height);
-            imageData = c.toDataURL("image/jpeg", 0.9);
-            URL.revokeObjectURL(url);
+    // ---------- storyboard (opsional): folder storyboard-malin di folder JAJA AI TOOL ----------
 
-            $("imgPv").src = imageData;
-            $("imgPv").style.display = "block";
-            $("imgInfo").textContent = c.width + "x" + c.height + ", " + Math.round(imageData.length * 0.75 / 1024) + " KB (diperkecil di browser, dikirim sebagai base64)";
+    const SB_BASE = "../../storyboard-malin/";
+    let scenes = [];
+
+    async function muatStoryboard() {
+
+        const info = $("sbInfo");
+
+        try {
+            const r = await fetch(SB_BASE + "adegan.json", { cache: "no-store" });
+            if (!r.ok) throw new Error(r.status);
+            scenes = await r.json();
+        } catch (e) {
+            $("sbBox").hidden = true;
+            return;          // tidak ada storyboard (mis. di GitHub Pages): kartu disembunyikan
+        }
+
+        $("sbBox").hidden = false;
+        JAJA.fill($("sbPick"), scenes.map(s => s.id + "  (" + s.durasi + " dtk)"));
+        info.textContent = scenes.length + " adegan ditemukan.";
+        pilihAdegan();
+    }
+
+    function pilihAdegan() {
+        const s = scenes[$("sbPick").selectedIndex];
+        if (!s) return;
+        $("sbDialog").textContent = s.dialog ? "Dialog adegan ini (Seedance 1.0 tidak menghasilkan suara): " + s.dialog : "";
+        $("sbPrompt").value = s.prompt;
+    }
+
+    $("sbPick").addEventListener("change", pilihAdegan);
+
+    $("sbPrev").addEventListener("click", () => { $("sbPick").selectedIndex = Math.max(0, $("sbPick").selectedIndex - 1); pilihAdegan(); });
+    $("sbNext").addEventListener("click", () => { $("sbPick").selectedIndex = Math.min(scenes.length - 1, $("sbPick").selectedIndex + 1); pilihAdegan(); });
+
+    $("sbLoad").addEventListener("click", async () => {
+
+        const s = scenes[$("sbPick").selectedIndex];
+        if (!s) return;
+
+        $("sbLoad").disabled = true;
+
+        try {
+            const r = await fetch(SB_BASE + s.image);
+            const dim = await loadImageBlob(await r.blob());
+
+            $("mode").value = "frame";
+            showImgBox();
+            $("prompt").value = $("sbPrompt").value.trim();
+
+            // durasi dari adegan (tambahkan ke pilihan bila belum ada)
+            const d = String(s.durasi);
+            if (![...$("dur").options].some(o => o.value === d)) {
+                const o = document.createElement("option");
+                o.value = o.textContent = d;
+                $("dur").appendChild(o);
+            }
+            $("dur").value = d;
+
+            // rasio mengikuti gambar
+            if (dim) {
+                const r2 = dim.w / dim.h;
+                $("ratio").value = Math.abs(r2 - 16 / 9) < 0.05 ? "16:9" : Math.abs(r2 - 9 / 16) < 0.05 ? "9:16" : Math.abs(r2 - 1) < 0.05 ? "1:1" : $("ratio").value;
+            }
+
             rebuild();
-        };
+            $("sbInfo").textContent = "✅ " + s.id + " dimuat: gambar, prompt, durasi " + d + " dtk. Cek langkah 4 lalu kirim.";
+            $("body").scrollIntoView({ block: "center" });
+        } catch (e) {
+            $("sbInfo").textContent = "❌ Gagal memuat adegan: " + e.message;
+        }
 
-        im.onerror = () => { $("imgInfo").textContent = "Gambar tidak bisa dibaca."; };
-        im.src = url;
+        $("sbLoad").disabled = false;
     });
 
     // ---------- isi permintaan ----------
@@ -364,5 +454,6 @@
     renderTasks();
     rebuild();
     cek();
+    muatStoryboard();
 
 })();

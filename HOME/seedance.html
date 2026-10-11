@@ -38,6 +38,21 @@
         <div class="btn-row"><button class="ghost sm" id="cek">🔄 Cek koneksi</button></div>
     </div>
 
+    <div class="card" id="sbBox" hidden>
+        <h2>Storyboard Anda</h2>
+        <p class="hint" id="sbInfo"></p>
+        <label class="lbl">Adegan</label>
+        <select id="sbPick"></select>
+        <div class="btn-row">
+            <button class="ghost sm" id="sbPrev">◀ Sebelumnya</button>
+            <button class="ghost sm" id="sbNext">Berikutnya ▶</button>
+        </div>
+        <label class="lbl">Prompt ringkas untuk Seedance (boleh diedit)</label>
+        <textarea id="sbPrompt" class="md"></textarea>
+        <p class="hint" id="sbDialog"></p>
+        <div class="btn-row"><button id="sbLoad">📥 Muat adegan ini ke form</button></div>
+    </div>
+
     <div class="card">
         <h2>2. Model &amp; Mode</h2>
         <label class="lbl">ID model (salin persis dari daftar model di konsol BytePlus)</label>
