@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JAJA AI TOOLS - Seedance</title>
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/extra.css">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<meta name="description" content="Buat video dengan Seedance (BytePlus ModelArk) lewat proxy lokal dengan kunci API milik Anda sendiri.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="JAJA AI TOOLS - Seedance">
+<meta property="og:description" content="Buat video dengan Seedance (BytePlus ModelArk) lewat proxy lokal dengan kunci API milik Anda sendiri.">
+<meta property="og:image" content="https://panamadesi.github.io/Jaja-AI-Tools/assets/header.png">
+<meta property="og:url" content="https://panamadesi.github.io/Jaja-AI-Tools/HOME/seedance.html">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body>
+
+<div class="container">
+
+<header class="header">
+    <img src="../assets/header.png" class="header-banner">
+</header>
+
+<nav class="menu-bar" id="nav"></nav>
+
+<div class="main">
+
+<div class="left-panel">
+
+    <div class="card">
+        <h2>1. Koneksi</h2>
+        <p class="hint" id="koneksi">Memeriksa proxy...</p>
+        <label class="lbl">Alamat proxy lokal</label>
+        <input type="text" id="proxy" value="http://127.0.0.1:8787">
+        <div class="btn-row"><button class="ghost sm" id="cek">🔄 Cek koneksi</button></div>
+    </div>
+
+    <div class="card">
+        <h2>2. Model &amp; Mode</h2>
+        <label class="lbl">ID model (salin persis dari daftar model di konsol BytePlus)</label>
+        <input type="text" id="model" list="modelList" placeholder="contoh: dreamina-seedance-2-0-260128">
+        <datalist id="modelList">
+            <option value="dreamina-seedance-2-0-260128">
+        </datalist>
+        <label class="lbl">Mode</label>
+        <select id="mode">
+            <option value="teks">Teks → Video</option>
+            <option value="frame">Gambar → Video (gambar jadi frame awal)</option>
+            <option value="ref">Gambar referensi (wajah, produk, gaya)</option>
+        </select>
+        <div id="imgBox" hidden>
+            <label class="lbl">Gambar</label>
+            <input type="file" id="img" accept="image/*">
+            <img id="imgPv" alt="" style="display:none;max-width:100%;max-height:220px;border-radius:10px;margin-top:8px">
+            <p class="hint" id="imgInfo"></p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>3. Prompt &amp; Pengaturan</h2>
+        <label class="lbl">Prompt (bahasa Inggris paling akurat)</label>
+        <textarea id="prompt" class="md" placeholder="Contoh: a young Indonesian woman in a green kebaya walks slowly through a rice field at sunrise, cinematic, slow push in"></textarea>
+        <div class="row">
+            <div><label class="lbl">Rasio</label><select id="ratio"></select></div>
+            <div><label class="lbl">Durasi (detik)</label><select id="dur"></select></div>
+        </div>
+        <div class="row">
+            <div><label class="lbl">Resolusi</label><select id="res"></select></div>
+            <div><label class="lbl">Seed (opsional)</label><input type="number" id="seed" placeholder="acak"></div>
+        </div>
+        <label class="lbl"><input type="checkbox" id="audio"> Hasilkan audio (jika model mendukung)</label>
+        <label class="lbl"><input type="checkbox" id="wm"> Tambahkan watermark</label>
+        <label class="lbl">Cara mengirim parameter</label>
+        <select id="pstyle">
+            <option value="json">Field JSON (ratio, duration, resolution)</option>
+            <option value="flag">Flag di dalam prompt (--ratio --dur --rs)</option>
+        </select>
+        <p class="hint">Pilih "Flag" bila BytePlus menolak field JSON untuk model Anda.</p>
+    </div>
+
+</div>
+
+<div class="right-panel">
+
+    <div class="card">
+        <h2>4. Isi Permintaan</h2>
+        <p class="hint">Ini yang akan dikirim. Anda boleh mengedit langsung bila BytePlus meminta format lain. <code>__GAMBAR__</code> diganti gambar Anda saat dikirim.</p>
+        <textarea id="body" class="lg" spellcheck="false"></textarea>
+        <div class="btn-row">
+            <button class="ghost" id="rebuild">♻ Bangun ulang dari form</button>
+            <button id="send">🌱 Kirim ke Seedance</button>
+        </div>
+        <p class="hint" id="warn">⚠️ Setiap pengiriman memakai kredit atau biaya akun BytePlus Anda. Coba dulu dengan 5 detik dan resolusi terendah.</p>
+    </div>
+
+    <div class="card">
+        <h2>5. Hasil</h2>
+        <p id="status" class="hint">Belum ada tugas.</p>
+        <video id="out" controls playsinline style="display:none;width:100%;max-height:520px;border-radius:12px;background:#000"></video>
+        <div class="btn-row" id="outBtns" hidden>
+            <button class="ghost" id="open">🔍 Buka di tab baru</button>
+            <button class="ghost" id="saveLocal">💾 Simpan ke komputer</button>
+            <button class="ghost" id="copyUrl">📋 Salin tautan</button>
+        </div>
+        <p class="hint" id="saveInfo"></p>
+        <label class="lbl">Pantau tugas lama (ID)</label>
+        <input type="text" id="resumeId" placeholder="cgt-...">
+        <div class="btn-row"><button class="ghost sm" id="resume">▶ Pantau</button></div>
+        <div class="hist" id="tasks"></div>
+    </div>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="../js/guides.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/seedance.js"></script>
+</body>
+</html>

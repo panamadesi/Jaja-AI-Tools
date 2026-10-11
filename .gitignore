@@ -1,0 +1,7 @@
+# Rahasia dan hasil besar tidak boleh masuk repo
+seedance-key.txt
+seedance-config.json
+*.key
+.env
+seedance-output/
+__pycache__/

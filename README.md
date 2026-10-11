@@ -9,6 +9,7 @@ Kumpulan tool gratis untuk AI content creator. Semua berjalan di browser, tanpa 
 | Character Clone | Master prompt untuk meniru pose, outfit, rambut, lokasi, dan kamera dari gambar referensi |
 | Image Generator | Text to image lewat ComfyUI lokal (SDXL) atau Pollinations (512x512) |
 | Motion Control | Prompt video untuk Wan 2.2, Seedance, Kling, Veo 3 |
+| Seedance | Buat video dengan Seedance (BytePlus ModelArk) memakai kunci API milik sendiri lewat proxy lokal |
 | Referensi Video | Unggah video lokal, ambil frame kunci, susun prompt gerakan berurutan (diproses di browser) |
 | Prompt Siap Pakai | 40 prompt siap salin (portrait, fashion, produk, sinematik, thumbnail) |
 | UGC Konten | Hook, naskah bertimestamp, CTA, hashtag, dan storyboard jualan |
@@ -53,3 +54,16 @@ assets/             gambar, video, ikon
 
 Daftar web AI di Jaja Bundle berasal dari deskripsi video
 [GENERATOR AI 2026 TERBARU](https://www.youtube.com/watch?v=SyXptMYmBy8) milik Jaja Tip Tutorial.
+
+## Seedance (BytePlus ModelArk)
+
+Halaman Seedance memanggil API BytePlus lewat proxy kecil yang hanya berjalan di komputer Anda
+(`tools/seedance-proxy.py`, hanya 127.0.0.1, hanya menerima permintaan dari `http://localhost:8000`).
+
+1. Buat kunci API di konsol BytePlus ModelArk dan aktifkan model Seedance yang akan dipakai.
+2. Simpan kunci sebagai satu baris di `seedance-key.txt` di **folder induk repo** (di luar repo), atau set variabel `ARK_API_KEY`.
+   File itu masuk `.gitignore`; jangan pernah di-commit atau dibagikan.
+3. Jalankan `JALANKAN-SEEDANCE-PROXY.bat`, lalu buka `http://localhost:8000/Jaja-AI-Tools/HOME/seedance.html`.
+
+Alamat API default `https://ark.ap-southeast.bytepluses.com/api/v3` bisa diganti lewat `ARK_BASE_URL` atau `seedance-config.json`.
+Setiap pengiriman memakai kredit akun Anda. Versi di GitHub Pages tidak bisa memakai fitur ini.

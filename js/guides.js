@@ -75,6 +75,25 @@ const GUIDES = {
         ]
     },
 
+    "seedance.html": {
+        title: "Seedance",
+        goal: "Membuat video dengan Seedance (BytePlus ModelArk) memakai kunci API milik Anda sendiri, lewat proxy kecil di komputer Anda.",
+        steps: [
+            "Sekali saja: buat <b>kunci API</b> di konsol BytePlus ModelArk (menu API Key) dan aktifkan model Seedance yang ingin dipakai. Anda juga yang mengisi kredit atau paketnya.",
+            "Simpan kunci itu sebagai satu baris di file <code>seedance-key.txt</code> di folder <code>JAJA AI TOOL</code>. Jangan dibagikan dan jangan dikirim ke siapa pun, termasuk ke chat ini.",
+            "Klik dua kali <code>JALANKAN-SEEDANCE-PROXY.bat</code>, biarkan jendelanya terbuka, lalu buka halaman ini dari <code>http://localhost:8000</code>. Status di langkah 1 harus berubah menjadi hijau.",
+            "Isi <b>ID model</b> (salin persis dari daftar model di konsol; untuk Seedance 2.5 cari ID yang tertulis di sana), pilih mode, tulis prompt, lalu atur rasio, durasi, dan resolusi.",
+            "Cek kotak <b>Isi Permintaan</b>, lalu klik <b>Kirim ke Seedance</b>. Halaman memantau tugas dan menampilkan videonya saat selesai. Klik <b>Simpan ke komputer</b> karena tautan hasil cepat kedaluwarsa."
+        ],
+        next: "Hasil video bisa disambung di editor. Untuk video panjang, kirim prompt per adegan dari Pabrik Konten atau Motion Control.",
+        tips: [
+            "Kunci API hanya dibaca proxy lokal dan tidak pernah masuk ke browser, GitHub, atau halaman online. Versi di <code>github.io</code> tidak bisa memakai fitur ini.",
+            "Setiap pengiriman memakai kredit akun Anda. Coba dulu 5 detik dengan resolusi terendah.",
+            "Kalau BytePlus menolak (muncul pesan galat), isi permintaan bisa diedit langsung; pilih juga \"Flag di dalam prompt\" untuk model yang tidak menerima field JSON.",
+            "Mode \"Gambar referensi\" cocok untuk menjaga wajah atau produk tetap sama; mode \"Gambar → Video\" memakai gambar sebagai frame pertama."
+        ]
+    },
+
     "video-referensi.html": {
         title: "Referensi Video",
         goal: "Mengubah video referensi gerakan (misalnya joget atau jalan) menjadi frame kunci dan prompt gerakan berurutan.",

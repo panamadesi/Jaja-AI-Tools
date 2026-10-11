@@ -236,6 +236,12 @@ $("exportBtn").addEventListener("click", () => {
     link.click();
 });
 
+$("seedBtn").addEventListener("click", () => {
+    if (!$("hasil").value.trim()) build();
+    JAJA.store("jaja_seed_prompt", $("hasil").value.split("\n(Catatan:")[0].trim());
+    location.href = "seedance.html";
+});
+
 ["subject", "action", "scene", "shot", "camera", "speed", "style", "light", "duration", "aspect", "audio"]
     .forEach(id => $(id).addEventListener("change", build));
 
